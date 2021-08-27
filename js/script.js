@@ -4533,6 +4533,7 @@ let menu = document.querySelector(".menu");
 let burger = document.querySelector(".burger");
 let body = document.querySelector('body');
 let menuList = document.querySelectorAll(".menu__item");
+let headerBlock = document.querySelector(".header-block");
 
 // Burger
 if (burger) {
@@ -4540,6 +4541,8 @@ if (burger) {
         menu.classList.toggle('menu_toggle');
         this.classList.toggle('burger__toggle');
         body.classList.toggle('body-toggle');
+        headerBlock.classList.toggle('header-block_toggle');
+
     });
 }
 // Burger
@@ -4551,6 +4554,7 @@ document.addEventListener('keydown', function (e) {
         menu.classList.remove('menu_toggle');
         burger.classList.remove('burger__toggle');
         body.classList.remove('body-toggle');
+        headerBlock.classList.remove('header-block_toggle');
     }
 });
 // Close menu on press Esc button
@@ -4676,16 +4680,43 @@ window.addEventListener('scroll', function (e) {
 
 // NAV STRIPE
 ;
-let navSearchs = document.querySelectorAll('.search');
-if (navSearchs) {
-    for (const navSearch of navSearchs) {
-        let navSearchBtn = navSearch.querySelector('.search__btn');
+// include('./components/_search.js');
+window.addEventListener('load', function () {
+    let caution = document.querySelector('.caution');
+    let cautionClose = document.querySelector('.caution__close')
 
-        navSearchBtn.addEventListener('click', () => {
-            navSearch.classList.toggle('search_active');
-        });
+    cautionClose.addEventListener('click', function () {
+        caution.remove();
+    });
+}, false);
+;
+window.addEventListener('load', function () {
+    let searchTable = document.querySelector(".search-table");
+    let searchNav = searchTable.querySelector(".search-table__nav");
+    let searchHeads = searchTable.querySelectorAll(".search-table__head");
+    let searchBlocks = searchTable.querySelectorAll(".search-table__body");
+
+    for (let i = 0; i < searchHeads.length; i++) {
+        let searchItems = searchBlocks[i].querySelectorAll(".search-table__item");
+
+        for (let k = 0; k < searchItems.length; k++) {
+            const searchItem = searchItems[k];
+            let searchHeadsTitle = searchHeads[i].querySelector(".search-table__title");
+
+            searchItem.addEventListener('click', () => {
+                if (searchHeads[i + 1]) {
+                    searchHeads[i].classList.remove('_active');
+                    searchHeads[i + 1].classList.add('search-table__head_checked');
+                    searchHeads[i + 1].classList.add('_active');
+                    searchBlocks[i].classList.remove('_active');
+                    searchBlocks[i + 1].classList.add('_active');
+                    let searchItemText = searchItem.textContent;
+                    searchHeadsTitle.innerHTML = searchItemText;
+                }
+            });
+        }
     }
-}
+}, false);
 ;
 // COMPONENTS
 
