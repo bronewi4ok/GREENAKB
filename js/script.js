@@ -2948,7 +2948,7 @@ window.addEventListener('load', function () {
         slideToClickedSlide: true,
 
         autoplay: {
-            delay: 3000,
+            delay: 700000,
             disableOnInteraction: false,
         },
 
@@ -3463,23 +3463,23 @@ if (spollers.length > 0) {
         });
     }
 }
-
-
 ;
 // GOTOP
-scrollToElement('.gotop', 'body');
+window.addEventListener('load', function () {
+    scrollToElement('.gotop', 'body');
 
 
-function gotopScroll() {
-    let scrollTop = window.scrollY;
-    document.querySelector('.gotop').classList.toggle('gotop_toggle', scrollTop > 0);
-}
+    function gotopScroll() {
+        let scrollTop = window.scrollY;
+        document.querySelector('.gotop').classList.toggle('gotop_toggle', scrollTop > 0);
+    }
 
-['scroll', 'load'].forEach(evt =>
-    window.addEventListener(evt, () => {
-        gotopScroll();
-    }, false)
-);
+    ['scroll', 'load'].forEach(evt =>
+        window.addEventListener(evt, () => {
+            gotopScroll();
+        }, false)
+    );
+}, false);
 // GOTOP
 ;
 // IBG
@@ -3491,34 +3491,36 @@ function testWebP(callback) {
     };
 }
 
-testWebP(function (support) {
-    let ibg = document.querySelectorAll(".ibg");
-    if (ibg.length > 0) {
-        for (let i = 0, j = ibg.length; i < j; i++) {
-            let ibg__img = ibg[i].querySelector('.ibg__img');
-            if (ibg__img) {
-                let picture = ibg__img.parentNode;
-                let source = ibg__img.parentNode.querySelector('[type="image/webp"]');
-                if (support && source && source.getAttribute('srcset') != null) {
-                    ibg[i].style.backgroundImage = 'url(' + source.getAttribute('srcset') + ')';
-                    picture.remove();
-                }
-                else if (ibg__img.getAttribute('src') != null) {
-                    ibg[i].style.backgroundImage = 'url(' + ibg__img.getAttribute('src') + ')';
-                    ibg__img.remove();
-                    if (picture.nodeName == 'PICTURE') {
+window.addEventListener('load', function () {
+    testWebP(function (support) {
+        let ibg = document.querySelectorAll(".ibg");
+        if (ibg.length > 0) {
+            for (let i = 0, j = ibg.length; i < j; i++) {
+                let ibg__img = ibg[i].querySelector('.ibg__img');
+                if (ibg__img) {
+                    let picture = ibg__img.parentNode;
+                    let source = ibg__img.parentNode.querySelector('[type="image/webp"]');
+                    if (support && source && source.getAttribute('srcset') != null) {
+                        ibg[i].style.backgroundImage = 'url(' + source.getAttribute('srcset') + ')';
                         picture.remove();
-                    } else {
-                        console.log(ibg__img.nodeName);
-                        ibg__img.remove();
                     }
+                    else if (ibg__img.getAttribute('src') != null) {
+                        ibg[i].style.backgroundImage = 'url(' + ibg__img.getAttribute('src') + ')';
+                        ibg__img.remove();
+                        if (picture.nodeName == 'PICTURE') {
+                            picture.remove();
+                        } else {
+                            console.log(ibg__img.nodeName);
+                            ibg__img.remove();
+                        }
+                    }
+                } else {
+                    ibg[i].style.backgroundColor = '#f2f4fe';
                 }
-            } else {
-                ibg[i].style.backgroundColor = '#f2f4fe';
             }
         }
-    }
-});
+    });
+}, false);
 
 // IBG;
 ;
@@ -4506,6 +4508,19 @@ if (priceSlider) {
 
 // NOUISLIDER
 ;
+// When the user scrolls the page, execute myFunction
+window.onscroll = function () { scrollBar() };
+
+function scrollBar() {
+    let scrollProgress = document.querySelector(".scroll-bar__progress");
+    if (scrollProgress) {
+        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var scrolled = (winScroll / height) * 100;
+        scrollProgress.style.width = scrolled + "%";
+    }
+}
+;
 
 // include('./ui/_validation.js');
 // include('./ui/_scroll.js');
@@ -4542,7 +4557,6 @@ if (burger) {
         this.classList.toggle('burger__toggle');
         body.classList.toggle('body-toggle');
         headerBlock.classList.toggle('header-block_toggle');
-
     });
 }
 // Burger
@@ -4683,37 +4697,41 @@ window.addEventListener('scroll', function (e) {
 // include('./components/_search.js');
 window.addEventListener('load', function () {
     let caution = document.querySelector('.caution');
-    let cautionClose = document.querySelector('.caution__close')
+    let cautionClose = document.querySelector('.caution__close');
 
     cautionClose.addEventListener('click', function () {
-        caution.remove();
+        if (caution && cautionClose) {
+            caution.remove();
+        }
     });
 }, false);
 ;
 window.addEventListener('load', function () {
     let searchTable = document.querySelector(".search-table");
-    let searchNav = searchTable.querySelector(".search-table__nav");
-    let searchHeads = searchTable.querySelectorAll(".search-table__head");
-    let searchBlocks = searchTable.querySelectorAll(".search-table__body");
+    if (searchTable) {
+        let searchNav = searchTable.querySelector(".search-table__nav");
+        let searchHeads = searchTable.querySelectorAll(".search-table__head");
+        let searchBlocks = searchTable.querySelectorAll(".search-table__body");
 
-    for (let i = 0; i < searchHeads.length; i++) {
-        let searchItems = searchBlocks[i].querySelectorAll(".search-table__item");
+        for (let i = 0; i < searchHeads.length; i++) {
+            let searchItems = searchBlocks[i].querySelectorAll(".search-table__item");
 
-        for (let k = 0; k < searchItems.length; k++) {
-            const searchItem = searchItems[k];
-            let searchHeadsTitle = searchHeads[i].querySelector(".search-table__title");
+            for (let k = 0; k < searchItems.length; k++) {
+                const searchItem = searchItems[k];
+                let searchHeadsTitle = searchHeads[i].querySelector(".search-table__title");
 
-            searchItem.addEventListener('click', () => {
-                if (searchHeads[i + 1]) {
-                    searchHeads[i].classList.remove('_active');
-                    searchHeads[i + 1].classList.add('search-table__head_checked');
-                    searchHeads[i + 1].classList.add('_active');
-                    searchBlocks[i].classList.remove('_active');
-                    searchBlocks[i + 1].classList.add('_active');
-                    let searchItemText = searchItem.textContent;
-                    searchHeadsTitle.innerHTML = searchItemText;
-                }
-            });
+                searchItem.addEventListener('click', () => {
+                    if (searchHeads[i + 1]) {
+                        searchHeads[i].classList.remove('_active');
+                        searchHeads[i + 1].classList.add('search-table__head_checked');
+                        searchHeads[i + 1].classList.add('_active');
+                        searchBlocks[i].classList.remove('_active');
+                        searchBlocks[i + 1].classList.add('_active');
+                        let searchItemText = searchItem.textContent;
+                        searchHeadsTitle.innerHTML = searchItemText;
+                    }
+                });
+            }
         }
     }
 }, false);
