@@ -17,6 +17,14 @@
 @font-face {
   font-family: "Lato";
   font-display: swap;
+  src: url("../fonts/Lato-Semibold.woff2") format("woff2"), url("../fonts/Lato-Semibold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lato";
+  font-display: swap;
   src: url("../fonts/Lato-Medium.woff2") format("woff2"), url("../fonts/Lato-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
@@ -810,7 +818,7 @@ progress {
 }
 
 .txt p:not(:last-child) {
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 }
 
 .txt b {
@@ -2208,6 +2216,22 @@ a.ripple .waves-ripple {
   padding-left: 30px;
 }
 
+body:not(._loaded) .top__title {
+  font-size: 130px;
+  font-weight: 700;
+  font-family: Arial;
+  height: auto;
+  letter-spacing: -1.15px;
+}
+
+body:not(._loaded) .top__subitle {
+  font-size: 63px;
+  font-weight: 400;
+  font-family: Arial;
+  height: auto;
+  letter-spacing: 0.65px;
+}
+
 .top__title {
   font-weight: 800;
   font-size: 124px;
@@ -3595,14 +3619,11 @@ body[data-aos-easing=ease-out-back] [data-aos] {
   display: flex;
   -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
-  overflow: visible;
 }
 
 .testimonials :not(.swiper-container-initialized) .swiper-wrapper {
   display: -webkit-flex;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  flex-wrap: wrap;
   margin-left: -20px;
   margin-bottom: -20px;
   -webkit-flex: 1 1;
@@ -3616,6 +3637,15 @@ body[data-aos-easing=ease-out-back] [data-aos] {
   flex: var(--fl, 0 0 auto);
   width: calc(100% / 3 * 1);
   min-width: 0;
+}
+
+.testimonials_row .swiper-container {
+  overflow: visible;
+}
+
+.testimonials_row .swiper-wrapper {
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 .testimonials__btn {
@@ -5338,7 +5368,7 @@ body[data-aos-easing=ease-out-back] [data-aos] {
 }
 
 .article__content p:not(:last-child) {
-  margin-bottom: calc(1em * 1.6);
+  margin-bottom: 1em;
 }
 
 .article__content:not(:last-child) {
@@ -5970,6 +6000,14 @@ body[data-aos-easing=ease-out-back] [data-aos] {
 
   .main_article {
     margin-bottom: 48px;
+  }
+
+  body:not(._loaded) .top__title {
+    font-size: 48px;
+  }
+
+  body:not(._loaded) .top__subitle {
+    font-size: 28px;
   }
 
   .top__title {
