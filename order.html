@@ -7,8 +7,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="format-detection" content="address=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description"
-        content="описание, 70-150 символов, уникальное для всех страниц, не повторяет Title">
+    <meta name="description" content="описание, 70-150 символов, уникальное для всех страниц, не повторяет Title">
     <meta name="keywords" content="ключевые слова">
     <meta name="Author" content="Автор">
     <meta name="referrer" content="strict-origin">
@@ -22,19 +21,1355 @@
     <!-- <meta name="robots" content="index,follow" />-->
 
     <!-- FONTS-->
-    <link rel="preload" href="./fonts/Lato-Heavy.woff2" as="font" type="font/woff2"
-        crossorigin="anonymous">
-    <link rel="preload" href="./fonts/Lato-Bold.woff2" as="font" type="font/woff2"
-        crossorigin="anonymous">
-    <link rel="preload" href="./fonts/Lato-Semibold.woff2" as="font" type="font/woff2"
-        crossorigin="anonymous">
-    <link rel="preload" href="./fonts/Lato-Medium.woff2" as="font" type="font/woff2"
-        crossorigin="anonymous">
-    <link rel="preload" href="./fonts/Lato-Regular.woff2" as="font" type="font/woff2"
-        crossorigin="anonymous">
+    <link rel="preload" href="./fonts/Lato-Heavy.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="./fonts/Lato-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="./fonts/Lato-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="./fonts/Lato-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="./fonts/Lato-Light.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 
-    <!-- CSS + critical-->
-    <link rel="stylesheet" href="./css/style.min.css">
+    <!-- Preload images-->
+    <link href="./img/cmn/logo.svg" rel="preload" as="image">
+    <link href="img/top/top_1.webp" rel="preload" as="image">
+    <link href="img/top/top_bg.webp" rel="preload" as="image">
+
+    <!-- Critical JS-->
+
+    <style>
+        function() {
+            let t=[],
+            e=document.querySelectorAll("[data-da]"),
+            n=[],
+            i=[];
+
+            if(e.length>0) {
+                let s=0;
+
+                for(let i=0; i<e.length; i++) {
+                    const r=e[i],
+                    l=r.getAttribute("data-da");
+
+                    if("" !=l) {
+                        const e=l.split(","),
+                        i=e[1]?e[1].trim(): "last", c=e[2]?e[2].trim():"767", d="min"===e[3]?e[3].trim():"max", u=document.querySelector("."+e[0].trim());
+
+                        e.length>0&&u&&(r.setAttribute("data-da-index", s), t[s]= {
+                                parent:r.parentNode, index:(a=r, o=void 0, o=Array.prototype.slice.call(a.parentNode.children), o.indexOf(a))
+                            }
+
+                            , n[s]= {
+                                element:r, destination:document.querySelector("."+e[0].trim()), place:i, breakpoint:c, type:d
+                            }
+
+                            , s++)
+                    }
+                }
+
+                (r=n).sort(function(t, e) {
+                        return t.breakpoint>e.breakpoint?-1:1
+                    }
+
+                ),
+                r.sort(function(t, e) {
+                        return t.place>e.place?1:-1
+                    }
+
+                );
+
+                for(let t=0; t<n.length; t++) {
+                    const e=n[t],
+                    r=e.breakpoint,
+                    a=e.type;
+                    i.push(window.matchMedia("("+a+"-width: "+r+"px)")),
+                    i[t].addListener(l)
+                }
+            }
+
+            var r,
+            a,
+            o;
+
+            function l(t) {
+                for(let t=0; t<n.length; t++) {
+                    const e=n[t],
+                    r=e.element,
+                    a=e.destination,
+                    o=e.place,
+                    l="_dynamic_adapt_"+e.breakpoint;
+
+                    if(i[t].matches) {
+                        if( !r.classList.contains(l)) {
+                            let t=c(a)[o];
+                            "first"===o?t=c(a)[0]: "last"===o&&(t=c(a)[c(a).length]), a.insertBefore(r, a.children[t]), r.classList.add(l)
+                        }
+                    }
+
+                    else r.classList.contains(l)&&(s(r), r.classList.remove(l))
+                }
+            }
+
+            function s(e) {
+                const n=e.getAttribute("data-da-index"),
+                i=t[n],
+                r=i.parent,
+                a=i.index,
+                o=c(r,  !0)[a];
+                r.insertBefore(e, r.children[o])
+            }
+
+            function c(t, e) {
+                const n=t.children,
+                i=[];
+
+                for(let t=0; t<n.length; t++) {
+                    const r=n[t];
+                    e?i.push(t): null==r.getAttribute("data-da")&&i.push(t)
+                }
+
+                return i
+            }
+
+            l()
+        }
+
+        ();
+    </style>
+
+    <!-- Critical css-->
+
+    <style>
+        .spollers._one .spoller:not(._spoller_active)+* {
+            display: none;
+        }
+
+        .spollers._one .spoller._spoller_active+* {
+            display: block;
+        }
+
+        @font-face {
+            font-family: "Lato";
+            font-display: swap;
+            src: url("../fonts/Lato-Heavy.woff2") format("woff2"), url("../fonts/Lato-Heavy.woff") format("woff");
+            font-weight: 800;
+            font-style: normal
+        }
+
+        @font-face {
+            font-family: "Lato";
+            font-display: swap;
+            src: url("../fonts/Lato-Bold.woff2") format("woff2"), url("../fonts/Lato-Bold.woff") format("woff");
+            font-weight: 700;
+            font-style: normal
+        }
+
+        @font-face {
+            font-family: "Lato";
+            font-display: swap;
+            src: url("../fonts/Lato-Medium.woff2") format("woff2"), url("../fonts/Lato-Medium.woff") format("woff");
+            font-weight: 500;
+            font-style: normal
+        }
+
+        @font-face {
+            font-family: "Lato";
+            font-display: swap;
+            src: url("../fonts/Lato-Regular.woff2") format("woff2"), url("../fonts/Lato-Regular.woff") format("woff");
+            font-weight: 400;
+            font-style: normal
+        }
+
+        @font-face {
+            font-family: "Lato";
+            font-display: swap;
+            src: url("../fonts/Lato-Light.woff2") format("woff2"), url("../fonts/Lato-Light.woff") format("woff");
+            font-weight: 300;
+            font-style: normal
+        }
+
+        :root {
+            --fnt_main: "Lato", sans-serif;
+            --dark: 0, 0, 0;
+            --light: 255, 255, 255;
+            --text: 0, 0, 0;
+            --text_dark: 39, 39, 39;
+            --info: 119, 119, 119;
+            --border: 209, 209, 209;
+            --divider: 209, 209, 209;
+            --back_dark: 242, 242, 242;
+            --back: 246, 246, 246;
+            --back_light: 247, 247, 247;
+            --prim: 0, 153, 23;
+            --prim_hvr: 0, 132, 20;
+            --sec: 67, 66, 66;
+            --sec_hvr: 50, 50, 50;
+            --bright: 255, 190, 21;
+            --bright_hvr: 245, 180, 15;
+            --focus: 48, 165, 224;
+            --bg: #D1D1D1;
+            --c-selection_bg: rgba(var(--prim), 1);
+            --c-selection_clr: rgba(var(--light), 1);
+            --select-scroll: rgba(var(--divider), 1);
+            --header_hight: 120px;
+            --menu_height: 62px;
+            --top_gap: 120px
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: none !important;
+            list-style: none;
+            font-family: var(--fnt_main);
+            overflow-wrap: break-word
+        }
+
+        html,
+        body {
+            box-sizing: border-box;
+            background-color: #fff;
+            width: 100%;
+            font-size: 100%;
+            position: relative;
+            text-rendering: optimizeSpeed
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            min-height: 100vh
+        }
+
+        header,
+        nav,
+        section {
+            display: block
+        }
+
+        a,
+        input,
+        button,
+        select {
+            font-family: inherit;
+        }
+
+        button,
+        select {
+            text-transform: none
+        }
+
+        input::-ms-clear {
+            display: none
+        }
+
+        button {
+            background-color: transparent
+        }
+
+        button::-moz-focus-inner {
+            padding: 0;
+            border: 0
+        }
+
+        a,
+        a:visited {
+            text-decoration: none
+        }
+
+        h1 {
+            font-size: inherit;
+            font-weight: inherit;
+            margin: 0
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            height: auto
+        }
+
+        select {
+            border: 0 solid transparent;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            text-indent: 1px;
+            text-overflow: ""
+        }
+
+        select::-ms-expand {
+            display: none
+        }
+
+        [data-bg] {
+            background-repeat: no-repeat;
+            background-size: cover
+        }
+
+        .full {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: column;
+            flex-direction: column
+        }
+
+        .full__up {
+            -webkit-flex: 1 0 auto;
+            flex: 1 0 auto;
+            z-index: 1;
+            position: relative
+        }
+
+        .ai_center {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center
+        }
+
+        .mw_0 {
+            min-width: 0
+        }
+
+        .cl {
+            -webkit-flex: var(--fl_flex);
+            flex: var(--fl_flex);
+            width: var(--fl_width)
+        }
+
+        .cl_12>*,
+        .cl>* {
+            --fl_base: initial;
+            --fl_col: initial
+        }
+
+        .catalog-menu__head,
+        .catalog-menu,
+        .cart-header__counter,
+        .search-header__btn,
+        .top,
+        .menu__item {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center
+        }
+
+        .catalog-menu__subitem,
+        .catalog-menu__link,
+        .cart-header,
+        .contact-item,
+        .search-header,
+        .logo,
+        .menu__list,
+        .header__burger,
+        .header__contacts,
+        .header__dash,
+        .header {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center
+        }
+
+        .top__title,
+        .btn {
+            overflow-wrap: break-word;
+            min-width: 0px;
+            word-break: break-word
+        }
+
+        .cart-header__price,
+        .contact-item {
+            white-space: nowrap
+        }
+
+        .box {
+            width: 100%;
+            max-width: 100%;
+            padding-left: calc(50% - 1140px / 2);
+            padding-right: calc(50% - 1140px / 2)
+        }
+
+        .row {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap
+        }
+
+        .cl {
+            --fl_flex: 1 0 0%;
+            --fl_width: auto
+        }
+
+        .d_none {
+            display: none !important
+        }
+
+        .mr_28 {
+            margin-right: 28px
+        }
+
+        ._anm_bounce {
+            -webkit-animation-name: bounce;
+            animation-name: bounce;
+            -webkit-transform-origin: center bottom;
+            transform-origin: center bottom
+        }
+
+        @-webkit-keyframes bounce {
+
+            0%,
+            20%,
+            53%,
+            to {
+                -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+                animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0)
+            }
+
+            40%,
+            43% {
+                -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+                animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+                -webkit-transform: translate3d(0, -30px, 0) scaleY(1.1);
+                transform: translate3d(0, -30px, 0) scaleY(1.1)
+            }
+
+            70% {
+                -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+                animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+                -webkit-transform: translate3d(0, -15px, 0) scaleY(1.05);
+                transform: translate3d(0, -15px, 0) scaleY(1.05)
+            }
+
+            80% {
+                -webkit-transform: translateZ(0) scaleY(0.95);
+                transform: translateZ(0) scaleY(0.95)
+            }
+
+            90% {
+                -webkit-transform: translate3d(0, -4px, 0) scaleY(1.02);
+                transform: translate3d(0, -4px, 0) scaleY(1.02)
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            53%,
+            to {
+                -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+                animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0)
+            }
+
+            40%,
+            43% {
+                -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+                animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+                -webkit-transform: translate3d(0, -30px, 0) scaleY(1.1);
+                transform: translate3d(0, -30px, 0) scaleY(1.1)
+            }
+
+            70% {
+                -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+                animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+                -webkit-transform: translate3d(0, -15px, 0) scaleY(1.05);
+                transform: translate3d(0, -15px, 0) scaleY(1.05)
+            }
+
+            80% {
+                -webkit-transform: translateZ(0) scaleY(0.95);
+                transform: translateZ(0) scaleY(0.95)
+            }
+
+            90% {
+                -webkit-transform: translate3d(0, -4px, 0) scaleY(1.02);
+                transform: translate3d(0, -4px, 0) scaleY(1.02)
+            }
+        }
+
+        ._spoller {
+            position: relative
+        }
+
+        ._spoller~* {
+            z-index: 1
+        }
+
+        .lazyload {
+            -webkit-filter: blur(8px);
+            filter: blur(8px)
+        }
+
+        .ripple {
+            position: relative;
+            overflow: hidden;
+            vertical-align: middle;
+            z-index: 1;
+            will-change: opacity, transform
+        }
+
+        .btn {
+            color: rgba(var(--text), 1);
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1;
+            display: -webkit-inline-flex;
+            display: inline-flex;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-align-items: center;
+            align-items: center;
+            max-width: 100%;
+            text-align: center
+        }
+
+        .btn svg {
+            width: 18px;
+            height: 18px
+        }
+
+        .btn_prim {
+            background-color: rgba(var(--prim), 1);
+            color: rgba(var(--light), 1)
+        }
+
+        .btn_md {
+            min-height: 50px;
+            padding: 16px 16px
+        }
+
+        .btn_md svg {
+            width: 20px;
+            height: 20px
+        }
+
+        .header {
+            --header_gap: 14px;
+            padding-top: var(--header_gap);
+            padding-bottom: var(--header_gap);
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            min-height: var(--header_hight);
+            background-color: rgba(var(--light), 1)
+        }
+
+        .header:not(:last-child) {
+            border-bottom: 1px solid #D9D9DE
+        }
+
+        .header__logo {
+            -webkit-flex: 0 0 151px;
+            flex: 0 0 151px
+        }
+
+        .header__logo:not(:last-child) {
+            margin-right: 27px
+        }
+
+        .header__search {
+            -webkit-flex: 1 0;
+            flex: 1 0;
+            margin-right: 28px
+        }
+
+        .header__dash {
+            margin-left: 28px
+        }
+
+        .header__burger {
+            margin-left: 24px
+        }
+
+        .menu {
+            background-color: rgba(var(--sec), 1);
+            position: relative;
+            display: -webkit-flex;
+            display: flex;
+            min-height: 62px
+        }
+
+        .menu__catalog {
+            -webkit-flex: 0 0 263px;
+            flex: 0 0 263px
+        }
+
+        .menu__list {
+            position: relative
+        }
+
+        .menu__item {
+            position: relative;
+            margin-left: 30px
+        }
+
+        .menu__link {
+            position: relative;
+            display: inline-block;
+            color: rgba(var(--light), 1);
+            text-align: center;
+            padding: 5px 0;
+            font-size: 14px;
+            line-height: 17px
+        }
+
+        .menu__link_active {
+            color: rgba(var(--bright), 1)
+        }
+
+        .logo__img {
+            width: 100%
+        }
+
+        .logo__img::before {
+            content: "";
+            float: left;
+            height: 0;
+            margin-left: -1px;
+            width: 1px;
+            padding-top: calc(68 / 58 * 100%)
+        }
+
+        .logo__img::after {
+            content: "";
+            display: table;
+            clear: both
+        }
+
+        .burger {
+            --burger: rgba(var(--prim), 1);
+            z-index: 2;
+            position: relative;
+            width: 32px;
+            height: 24px;
+            display: none;
+            -webkit-flex: 0 0 auto;
+            flex: 0 0 auto
+        }
+
+        .burger span {
+            height: 4px;
+            width: 100%;
+            background-color: var(--burger);
+            display: block;
+            position: absolute
+        }
+
+        .burger span:first-child {
+            top: 0;
+            left: 0;
+            -webkit-transform-origin: center center;
+            transform-origin: center center
+        }
+
+        .burger span:last-child {
+            bottom: 0;
+            left: 0;
+            -webkit-transform-origin: center center;
+            transform-origin: center center
+        }
+
+        .burger span.burger__line {
+            top: 50%;
+            left: 0;
+            -webkit-transform: translate(0, -50%);
+            transform: translate(0, -50%)
+        }
+
+        .top {
+            background-color: #F5F5F7;
+            min-width: 0;
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: calc(100vh - var(--header_hight) - var(--menu_height));
+            padding-bottom: var(--top_gap)
+        }
+
+        .top__slider {
+            position: relative
+        }
+
+        .top__box {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap
+        }
+
+        .top__caption {
+            -webkit-flex: 1 1;
+            flex: 1 1;
+            padding-top: 70px
+        }
+
+        .top__heading {
+            border-left: 4px solid rgba(var(--light), 1);
+            padding-left: 30px
+        }
+
+        .top__title {
+            font-weight: 900;
+            font-size: 124px;
+            color: rgba(var(--prim), 1);
+            min-width: 0px;
+            margin-bottom: -20px;
+            display: block
+        }
+
+        .top__subitle {
+            font-weight: bold;
+            font-size: 60px;
+            color: rgba(var(--sec), 1);
+            display: block
+        }
+
+        .top__control:not(:first-child) {
+            margin-top: 87px
+        }
+
+        .top__btn {
+            width: 214px;
+            max-width: 100%
+        }
+
+        .top__btn .top__sign {
+            display: block;
+            width: 9px;
+            height: 9px;
+            fill: rgba(var(--light), 1);
+            margin-left: 8px
+        }
+
+        .top__line {
+            height: 3px;
+            -webkit-flex: 1 1;
+            flex: 1 1;
+            background-color: rgba(var(--light), 1);
+            margin-left: 46px
+        }
+
+        .top__img {
+            -webkit-flex: var(--fl, 0 0 auto);
+            flex: var(--fl, 0 0 auto);
+            width: calc(100% / 1140 * 597);
+            min-width: 0;
+            margin-right: calc(-70 / 1140 * 100%);
+            margin-left: auto
+        }
+
+        :root {
+            --swiper-theme-color: #007aff
+        }
+
+        .swiper-container {
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            overflow: hidden;
+            list-style: none;
+            padding: 0;
+            z-index: 1;
+            min-height: 0;
+            min-width: 0
+        }
+
+        .swiper-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            display: -webkit-flex;
+            display: flex;
+            box-sizing: content-box;
+            min-width: 0
+        }
+
+        .swiper-wrapper {
+            -webkit-transform: translate3d(0px, 0, 0);
+            transform: translate3d(0px, 0, 0)
+        }
+
+        .swiper-slide {
+            -webkit-flex-shrink: 0;
+            flex-shrink: 0;
+            width: 100%;
+            height: 100%;
+            position: relative
+        }
+
+        .search-header {
+            position: relative
+        }
+
+        .search-header__input {
+            padding: 12px 40px 12px 21px;
+            border: 1px solid rgba(var(--border), 1);
+            width: 100%
+        }
+
+        .search-header__input::-webkit-input-placeholder {
+            font-family: Lato;
+            font-size: 14px;
+            line-height: calc(17 / 14);
+            color: #434242;
+            opacity: 0.7
+        }
+
+        .search-header__input::-moz-placeholder {
+            font-family: Lato;
+            font-size: 14px;
+            line-height: calc(17 / 14);
+            color: #434242;
+            opacity: 0.7
+        }
+
+        .search-header__input:-ms-input-placeholder {
+            font-family: Lato;
+            font-size: 14px;
+            line-height: calc(17 / 14);
+            color: #434242;
+            opacity: 0.7
+        }
+
+        .search-header__input::-ms-input-placeholder {
+            font-family: Lato;
+            font-size: 14px;
+            line-height: calc(17 / 14);
+            color: #434242;
+            opacity: 0.7
+        }
+
+        .search-header__btn {
+            position: absolute;
+            top: 50%;
+            right: 12px;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px
+        }
+
+        .search-header__icon {
+            width: 17px;
+            height: 17px;
+            fill: rgba(var(--sec), 1)
+        }
+
+        .contact-item {
+            font-family: Lato;
+            font-size: 14px;
+            line-height: calc(17 / 14);
+            color: #434242
+        }
+
+        .contact-item__icon {
+            width: 15px;
+            height: 15px;
+            fill: rgba(var(--prim), 1);
+            display: block
+        }
+
+        .contact-item__icon:not(:last-child) {
+            margin-right: 10px
+        }
+
+        .cart-header__box {
+            position: relative
+        }
+
+        .cart-header__box:not(:last-child) {
+            margin-right: 22px
+        }
+
+        .cart-header__icon {
+            width: 32px;
+            height: 32px;
+            fill: rgba(var(--prim), 1)
+        }
+
+        .cart-header__price {
+            font-size: 16px;
+            line-height: 19px;
+            color: #009917
+        }
+
+        .cart-header__price span {
+            color: rgba(var(--sec), 1)
+        }
+
+        .cart-header__counter {
+            position: absolute;
+            top: -6px;
+            left: 20px;
+            background-color: rgba(var(--sec), 1);
+            border-radius: 50%;
+            width: 23px;
+            height: 23px;
+            font-weight: 700;
+            font-size: 12px;
+            line-height: 14px;
+            color: #FFFFFF
+        }
+
+        .lang {
+            position: relative
+        }
+
+        .catalog-menu {
+            background-color: rgba(var(--prim), 1);
+            position: relative
+        }
+
+        .catalog-menu__head {
+            width: 100%;
+            height: 100%
+        }
+
+        .catalog-menu__icon {
+            width: 14px;
+            height: 14px;
+            fill: rgba(var(--light), 1);
+            margin-bottom: 3px
+        }
+
+        .catalog-menu__icon:not(:last-child) {
+            margin-right: 12px
+        }
+
+        .catalog-menu__title {
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 1;
+            text-align: center;
+            color: rgba(var(--light), 1)
+        }
+
+        .catalog-menu__body {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 2;
+            background-color: rgba(var(--light), 1);
+            box-shadow: 0px 4px 21px rgba(67, 66, 66, 0.22);
+            width: 328px
+        }
+
+        .catalog-menu__list {
+            position: relative
+        }
+
+        .catalog-menu__item {
+            font-size: 14px;
+            line-height: calc(17 / 14);
+            color: #434242;
+            padding: 0 21px 0 21px
+        }
+
+        .catalog-menu__item:not(:last-child) .catalog-menu__link::after {
+            content: "";
+            position: absolute;
+            -webkit-flex: var(--fl, 0 0 auto);
+            flex: var(--fl, 0 0 auto);
+            width: calc(100% / 12 * 1);
+            min-width: 0;
+            width: 100%;
+            height: 0px;
+            border-bottom: 1px solid rgba(var(--border), 1);
+            top: 100%;
+            left: 0
+        }
+
+        .catalog-menu__link {
+            padding: 12px 0;
+            min-height: 62px;
+            font-size: 14px;
+            line-height: calc(17 / 14);
+            color: #434242;
+            width: 100%;
+            height: 100%;
+            position: relative
+        }
+
+        .catalog-menu__arrow {
+            margin-left: auto
+        }
+
+        .catalog-menu__arrow svg {
+            width: 9px;
+            height: 9px;
+            fill: rgba(var(--prim), 1)
+        }
+
+        .catalog-menu__sublist {
+            position: absolute;
+            top: 0;
+            left: 100%;
+            z-index: 2;
+            background-color: rgba(var(--prim), 1);
+            display: none;
+            width: 203px;
+            padding: 0 27px 0 27px
+        }
+
+        .catalog-menu__subitem {
+            padding: 12px 0;
+            font-size: 14px;
+            line-height: calc(17 / 14);
+            color: #FFFFFF;
+            min-height: 62px
+        }
+
+        .catalog-menu__subitem:not(:last-child) {
+            border-bottom: 1px solid rgba(var(--light), 1)
+        }
+
+        @media all and (max-width:74.99875em) {
+            .d_lg_flex {
+                display: -webkit-flex !important;
+                display: flex !important
+            }
+
+            .header {
+                --header_gap: 8px;
+                min-height: 48px
+            }
+
+            .header__search {
+                -webkit-flex: 0 0 42px;
+                flex: 0 0 42px;
+                margin-right: 0;
+                margin-bottom: 24px;
+                -webkit-order: 1;
+                order: 1
+            }
+
+            .header__dash {
+                margin-left: auto
+            }
+
+            .header__contacts {
+                margin-top: auto;
+                -webkit-flex-direction: column;
+                flex-direction: column;
+                -webkit-justify-content: center;
+                justify-content: center;
+                -webkit-order: 4;
+                order: 4
+            }
+
+            .menu {
+                -webkit-flex-direction: column;
+                flex-direction: column;
+                --header-menu-top: 60px;
+                padding-top: 100px;
+                padding-bottom: 32px;
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 100%;
+                -webkit-transform: translateX(100%);
+                transform: translateX(100%);
+                height: 100vh;
+                overflow-x: hidden;
+                overflow-y: auto;
+                z-index: 2
+            }
+
+            .menu__catalog {
+                -webkit-flex: 0 0 48px;
+                flex: 0 0 48px;
+                margin-bottom: 20px
+            }
+
+            .menu__list {
+                -webkit-flex-direction: column;
+                flex-direction: column;
+                -webkit-flex: 1 0 auto;
+                flex: 1 0 auto;
+                -webkit-flex: 1 1;
+                flex: 1 1;
+                -webkit-order: 3;
+                order: 3
+            }
+
+            .menu__item {
+                margin-left: 0;
+                margin-bottom: 12px
+            }
+
+            .menu__link {
+                font-size: 32px;
+                line-height: 1.2
+            }
+
+            .burger {
+                display: block
+            }
+
+            .top {
+                padding-bottom: 48px;
+                min-height: calc(100vh - 48px)
+            }
+
+            .top__caption {
+                -webkit-order: 2;
+                order: 2;
+                padding-top: 48px
+            }
+
+            .top__title {
+                margin-bottom: 0
+            }
+
+            .top__control:not(:first-child) {
+                margin-top: 48px
+            }
+
+            .top__img {
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 80%;
+                -webkit-flex: var(--fl, 0 0 auto);
+                flex: var(--fl, 0 0 auto);
+                width: calc(100% / 1 * 1);
+                min-width: 0;
+                -webkit-order: 0;
+                order: 0
+            }
+
+            .contact-item {
+                color: rgba(var(--light), 1);
+                font-size: 18px
+            }
+
+            .contact-item:not(:last-child) {
+                margin-bottom: 16px
+            }
+
+            .catalog-menu {
+                -webkit-flex-direction: column;
+                flex-direction: column
+            }
+
+            .catalog-menu__head {
+                height: 48px
+            }
+
+            .catalog-menu__title {
+                font-size: 20px
+            }
+
+            .catalog-menu__body {
+                position: static;
+                width: 100%
+            }
+
+            .catalog-menu__link {
+                width: auto;
+                height: auto;
+                min-height: 48px
+            }
+
+            .catalog-menu__sublist {
+                position: static;
+                width: 100%;
+                background-color: rgba(var(--light), 1)
+            }
+
+            .catalog-menu__subitem {
+                color: rgba(var(--sec), 1);
+                min-height: 48px
+            }
+
+            .catalog-menu__subitem:not(:last-child) {
+                border-bottom: 1px solid rgba(var(--border), 1)
+            }
+        }
+
+        @media (max-width:74.99875em) {
+            .box {
+                padding-left: calc(50% - 960px / 2);
+                padding-right: calc(50% - 960px / 2)
+            }
+        }
+
+        @media all and (max-width:61.99875em) {
+            .header__logo {
+                -webkit-flex: 0 0 120px;
+                flex: 0 0 120px
+            }
+
+            .header__logo:not(:last-child) {
+                margin-right: 20px
+            }
+        }
+
+        @media (max-width:61.99875em) {
+            .box {
+                padding-left: calc(50% - 720px / 2);
+                padding-right: calc(50% - 720px / 2)
+            }
+        }
+
+        @media all and (max-width:47.99875em) {
+            .header__logo {
+                -webkit-flex: 0 0 80px;
+                flex: 0 0 80px
+            }
+
+            .header__logo:not(:last-child) {
+                margin-right: 10px
+            }
+
+            .header__burger {
+                margin-left: 0px
+            }
+
+            .menu {
+                padding-top: 80px
+            }
+
+            .menu__item {
+                margin-bottom: 4px
+            }
+
+            .menu__link {
+                font-size: 18px
+            }
+
+            .top__title {
+                font-size: 48px
+            }
+
+            .top__subitle {
+                font-size: 28px
+            }
+
+            .cart-header__icon {
+                width: 24px;
+                height: 24px
+            }
+
+            .cart-header__price {
+                display: none
+            }
+
+            .cart-header__counter {
+                width: 18px;
+                height: 18px;
+                left: 15px
+            }
+        }
+
+        @media (max-width:47.99875em) {
+            .box {
+                padding-left: calc(50% - 540px / 2);
+                padding-right: calc(50% - 540px / 2)
+            }
+        }
+
+        @media (max-width:35.99875em) {
+            .box {
+                padding-left: 16px;
+                padding-right: 16px
+            }
+        }
+
+        .cart-header__counter,
+        .catalog-menu,
+        .catalog-menu__head,
+        .category__title,
+        .checkbox .checkbox__box,
+        .compare__box,
+        .dillers__btn,
+        .filters__counter,
+        .gotop,
+        .menu__item,
+        .order-count__inp,
+        .pagination__item,
+        .popup__close,
+        .price__div,
+        .radio .checkbox__box,
+        .search-header__btn,
+        .social__item,
+        .spoller__angle,
+        .switcher .checkbox__box,
+        .switcher .checkbox__box .checkbox__caption,
+        .testimonials__btn,
+        .tip-info,
+        .top,
+        .year-checkbox .checkbox__box {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center
+        }
+
+        .category {
+            background: #fff;
+            border: 1px solid #d1d1d1;
+            box-sizing: border-box;
+            box-shadow: 0 4px 34px rgba(67, 66, 66, .18);
+            padding: 16px;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            min-height: 166px;
+            height: 100%;
+            transition: .3s
+        }
+
+        .category:hover {
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1)
+        }
+
+        .category:active {
+            -webkit-transform: scale(.95);
+            transform: scale(.95)
+        }
+
+        .category__icon {
+            width: 64px;
+            height: 64px;
+            -o-object-fit: contain;
+            object-fit: contain
+        }
+
+        .category__icon:not(:last-child) {
+            margin-bottom: 18px
+        }
+
+        .category__title {
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 120%;
+            color: #434242;
+            text-align: center;
+            -webkit-flex: 1 1;
+            flex: 1 1
+        }
+    </style>
+
+    <!-- CSS-->
+    <link rel="stylesheet" href="./css/style.min.css" media="print" onload="this.media='all';">
 
     <!-- SVG SPRITE-->
     <link rel="prefetch" href="./img/icons/icons.svg" as="image" type="image/svg+xml">
@@ -123,149 +1458,299 @@
 <body class="wrapper full">
 
     <!-- HEADER-->
-    <div class="box caution" data-da="header-block, 0, 1199.98">
-        <div class="caution__inner">
-            <svg class="caution__icon">
-                <use href="img/icons/icons.svg#flag"></use>
-            </svg>
-            <div class="caution__txt">Версия сайта на украинском языке находится в разработке!</div>
-            <button class="caution__close" aria-label="close caution">
-                <svg class="caution_cross">
-                    <use href="img/icons/icons.svg#cmn--close"></use>
+
+    <!-- HAEDER-->
+    <header class="header box">
+        <a class="logo header__logo" href="#">
+            <picture>
+                <source srcset="img/cmn/logo.svg" type="image/webp">
+                <img class="logo__img" src="img/cmn/logo.svg" alt="logo">
+            </picture>
+        </a>
+
+        <!-- Search-->
+        <div class="header__search" data-da="menu, 0, 1199.98">
+            <form class="search-header cl">
+                <input class="search-header__input" type="text" placeholder="Что вы ищите" name="search_111" aria-label="поиск" required="">
+                <button class="search-header__btn" type="submit" aria-label="search">
+                    <svg class="search-header__icon">
+                        <use href="img/icons/icons.svg#cmn--search"></use>
+                    </svg>
+                </button>
+            </form>
+        </div>
+
+        <!-- Header contacts-->
+        <div class="header__contacts">
+            <div class="contacts _spollers _one hidden esc">
+                <svg class="contacts__icon">
+                    <use href="img/icons/icons.svg#phone"></use>
                 </svg>
+                <div class="contacts__info">
+                    <a class="contacts__item" href="#"> 0 800 999 999</a>
+                    <div class="contacts__caption">бесплатно с мобильного</div>
+                    <div class="contacts__angle _spoller">
+                        <svg class="contacts__arrow spoller__angle">
+                            <use href="img/icons/icons.svg#cmn--arrow_down"></use>
+                        </svg>
+                    </div>
+                    <div class="contacts__box">
+                        <div class="row mnl_24 mnb_24 pb_10">
+                            <div class="contacts__phones pl_24 pb_24">
+                                <a class="contacts__item mb_8" href="tel:+380667282328" target="_blank" rel="noopener noreferrer">066 72 82 328</a>
+                                <a class="contacts__item mb_8" href="tel:+380953623312" target="_blank" rel="noopener noreferrer">095 36 23 312</a>
+                                <a class="contacts__item" href="tel:+380632999909" target="_blank" rel="noopener noreferrer">
+                                    063 29 99 909</a>
+                            </div>
+                            <div class="contacts__social social-list pl_24 pb_24">
+                                <a class="contacts-social social-list__item" href="#">
+                                    <svg class="contacts-social__icon">
+                                        <use href="img/icons/icons.svg#viber"></use>
+                                    </svg>
+                                    <div class="contacts-social__txt">Viber</div>
+                                </a>
+                                <a class="contacts-social social-list__item" href="#">
+                                    <svg class="contacts-social__icon">
+                                        <use href="img/icons/icons.svg#telegram"></use>
+                                    </svg>
+                                    <div class="contacts-social__txt">Viber</div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="contacts__adress">г. Киев, ул. 53-я Садовая, д.66</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header__dash">
+            <div class="cart-header">
+                <div class="cart-header__box">
+                    <div class="cart-header__counter">5</div>
+                    <svg class="cart-header__icon">
+                        <use href="img/icons/icons.svg#cart"></use>
+                    </svg>
+                </div>
+                <div class="cart-header__price">2200 999999 <span>грн</span>
+                </div>
+            </div>
+            <select class="lang menu__lang" name="sel" aria-label="selct" data-da="menu, 0, 1199.98">
+                <option value="1" selected="selected" label="Placeholder">Рус</option>
+                <option value="2">item 2</option>
+                <option value="3">item 3</option>
+                <option value="4">item 4</option>
+                <option value="5">item 5</option>
+            </select>
+        </div>
+
+        <!-- Burger-->
+        <div class="header__burger d_none d_lg_flex">
+            <button class="burger" type="button" aria-label="Навигация">
+                <span></span>
+                <span class="burger__line"></span>
+                <span></span>
             </button>
         </div>
-    </div>
-    <div class="header-block">
-        <header class="header box">
-            <a class="logo header__logo" href="#">
-                <picture>
-                    <source srcset="img/cmn/logo.svg" type="image/webp">
-                    <img class="logo__img" src="img/cmn/logo.svg" alt="logo" width="151"
-                        height="61">
-                </picture>
-            </a>
-
-            <!-- Search-->
-            <div class="header__search d_lg_none">
-                <form class="search-header cl">
-                    <input class="search-header__input" type="text" placeholder="Что вы ищите"
-                        name="search_111" aria-label="поиск" required="">
-                    <button class="search-header__btn" type="submit" aria-label="search">
-                        <svg class="search-header__icon">
-                            <use href="img/icons/icons.svg#cmn--search"></use>
-                        </svg>
-                    </button>
-                </form>
-            </div>
-
-            <!-- Contacts-->
-            <div class="header__contacts d_lg_none">
-                <a class="contact-item contact-item_header mr_28" href="tel:+78633082020"
-                    target="_blank" rel="noopener noreferrer">
-                    <svg class="contact-item__icon">
-                        <use href="img/icons/icons.svg#phone"></use>
-                    </svg>
-                    <span>+7 (863) 308-20-20</span>
-                </a>
-                <a class="contact-item contact-item_header" href="mailto:info@greenakb.com.ua"
-                    target="_blank" rel="noopener noreferrer">
-                    <svg class="contact-item__icon">
-                        <use href="img/icons/icons.svg#dog"></use>
-                    </svg>
-                    <span>info@greenakb.com.ua</span>
-                </a>
-            </div>
-            <div class="header__dash">
-                <div class="cart-header">
-                    <div class="cart-header__box">
-                        <div class="cart-header__counter">5</div>
-                        <svg class="cart-header__icon">
-                            <use href="img/icons/icons.svg#cart"></use>
-                        </svg>
-                    </div>
-                    <div class="cart-header__price">2200 999999 <span>грн</span>
-                    </div>
-                </div>
-                <select class="lang menu__lang d_lg_none" name="sel" aria-label="selct">
-                    <option value="1" selected="selected" label="Placeholder">Рус</option>
-                    <option value="2">item 2</option>
-                    <option value="3">item 3</option>
-                    <option value="4">item 4</option>
-                    <option value="5">item 5</option>
-                </select>
-            </div>
-
-            <!-- Burger-->
-            <div class="header__burger d_none d_lg_flex">
-                <button class="burger" type="button" aria-label="Навигация">
-                    <span></span>
-                    <span class="burger__line"></span>
-                    <span></span>
-                </button>
-            </div>
-        </header>
-    </div>
+    </header>
 
     <!-- MENU-->
-    <div class="menu box" data-da="header-block, 1, 1199.98">
-        <div class="menu__inner">
-
-            <!-- Search-->
-            <div class="header__search d_none d_lg_block">
-                <form class="search-header cl">
-                    <input class="search-header__input" type="text" placeholder="Что вы ищите"
-                        name="search_111" aria-label="поиск" required="">
-                    <button class="search-header__btn" type="submit" aria-label="search">
-                        <svg class="search-header__icon">
-                            <use href="img/icons/icons.svg#cmn--search"></use>
-                        </svg>
-                    </button>
-                </form>
+    <div class="box menu">
+        <nav class="catalog-menu menu__catalog _spollers _one _esc">
+            <div class="catalog-menu__head _spoller">
+                <svg class="catalog-menu__icon">
+                    <use href="img/icons/icons.svg#catalog"></use>
+                </svg>
+                <div class="catalog-menu__title">Каталог товара</div>
             </div>
-            <div class="d_none d_lg_block menu__lang">
-                <select class="lang" name="sel" aria-label="selct">
-                    <option value="1" selected="selected" label="Placeholder">Рус</option>
-                    <option value="2">item 2</option>
-                    <option value="3">item 3</option>
-                    <option value="4">item 4</option>
-                    <option value="5">item 5</option>
-                </select>
+            <div class="catalog-menu__body">
+
+                <!-- Catalog list-->
+                <div class="catalog-menu__list">
+
+                    <!-- Catalog item-->
+                    <div class="catalog-menu__item">
+                        <a class="catalog-menu__link" href="#">Аккумуляторы<div class="catalog-menu__arrow">
+                                <svg>
+                                    <use href="img/icons/icons.svg#cmn--arrow_right"></use>
+                                </svg>
+                            </div>
+                        </a>
+
+                        <!-- Catalog sublist-->
+                        <div class="catalog-menu__sublist">
+                            <a class="catalog-menu__subitem" href="#">Тяговые</a>
+                            <a class="catalog-menu__subitem" href="#">Мото</a>
+                            <a class="catalog-menu__subitem" href="#">Грузовые</a>
+                            <a class="catalog-menu__subitem" href="#">Лодочные</a>
+                            <a class="catalog-menu__subitem" href="#">Для солнечных систем</a>
+                        </div>
+                    </div>
+
+                    <!-- Catalog item-->
+                    <div class="catalog-menu__item">
+                        <a class="catalog-menu__link" href="#">Аккумуляторы<div class="catalog-menu__arrow">
+                                <svg>
+                                    <use href="img/icons/icons.svg#cmn--arrow_right"></use>
+                                </svg>
+                            </div>
+                        </a>
+
+                        <!-- Catalog sublist-->
+                        <div class="catalog-menu__sublist">
+                            <a class="catalog-menu__subitem" href="#">Автомобильные</a>
+                            <a class="catalog-menu__subitem" href="#">Для ИБП</a>
+                            <a class="catalog-menu__subitem" href="#">Литиевые</a>
+                            <a class="catalog-menu__subitem" href="#">Тяговые</a>
+                            <a class="catalog-menu__subitem" href="#">Мото</a>
+                            <a class="catalog-menu__subitem" href="#">Грузовые</a>
+                            <a class="catalog-menu__subitem" href="#">Лодочные</a>
+                            <a class="catalog-menu__subitem" href="#">Для солнечных систем</a>
+                        </div>
+                    </div>
+
+                    <!-- Catalog item-->
+                    <div class="catalog-menu__item">
+                        <a class="catalog-menu__link" href="#">Аккумуляторы<div class="catalog-menu__arrow">
+                                <svg>
+                                    <use href="img/icons/icons.svg#cmn--arrow_right"></use>
+                                </svg>
+                            </div>
+                        </a>
+
+                        <!-- Catalog sublist-->
+                        <div class="catalog-menu__sublist">
+                            <a class="catalog-menu__subitem" href="#">Автомобильные</a>
+                            <a class="catalog-menu__subitem" href="#">Для ИБП</a>
+                            <a class="catalog-menu__subitem" href="#">Литиевые</a>
+                            <a class="catalog-menu__subitem" href="#">Тяговые</a>
+                            <a class="catalog-menu__subitem" href="#">Мото</a>
+                            <a class="catalog-menu__subitem" href="#">Грузовые</a>
+                            <a class="catalog-menu__subitem" href="#">Лодочные</a>
+                            <a class="catalog-menu__subitem" href="#">Для солнечных систем</a>
+                        </div>
+                    </div>
+
+                    <!-- Catalog item-->
+                    <div class="catalog-menu__item">
+                        <a class="catalog-menu__link" href="#">Аккумуляторы<div class="catalog-menu__arrow">
+                                <svg>
+                                    <use href="img/icons/icons.svg#cmn--arrow_right"></use>
+                                </svg>
+                            </div>
+                        </a>
+
+                        <!-- Catalog sublist-->
+                        <div class="catalog-menu__sublist">
+                            <a class="catalog-menu__subitem" href="#">Автомобильные</a>
+                            <a class="catalog-menu__subitem" href="#">Для ИБП</a>
+                            <a class="catalog-menu__subitem" href="#">Литиевые</a>
+                            <a class="catalog-menu__subitem" href="#">Тяговые</a>
+                            <a class="catalog-menu__subitem" href="#">Мото</a>
+                            <a class="catalog-menu__subitem" href="#">Грузовые</a>
+                            <a class="catalog-menu__subitem" href="#">Лодочные</a>
+                            <a class="catalog-menu__subitem" href="#">Для солнечных систем</a>
+                        </div>
+                    </div>
+
+                    <!-- Catalog item-->
+                    <div class="catalog-menu__item">
+                        <a class="catalog-menu__link" href="#">Аккумуляторы<div class="catalog-menu__arrow">
+                                <svg>
+                                    <use href="img/icons/icons.svg#cmn--arrow_right"></use>
+                                </svg>
+                            </div>
+                        </a>
+
+                        <!-- Catalog sublist-->
+                        <div class="catalog-menu__sublist">
+                            <a class="catalog-menu__subitem" href="#">Автомобильные</a>
+                            <a class="catalog-menu__subitem" href="#">Для ИБП</a>
+                            <a class="catalog-menu__subitem" href="#">Литиевые</a>
+                            <a class="catalog-menu__subitem" href="#">Тяговые</a>
+                            <a class="catalog-menu__subitem" href="#">Мото</a>
+                            <a class="catalog-menu__subitem" href="#">Грузовые</a>
+                            <a class="catalog-menu__subitem" href="#">Лодочные</a>
+                            <a class="catalog-menu__subitem" href="#">Для солнечных систем</a>
+                        </div>
+                    </div>
+
+                    <!-- Catalog item-->
+                    <div class="catalog-menu__item">
+                        <a class="catalog-menu__link" href="#">Аккумуляторы Lorem ipsum, dolor sit
+                            amet consectetur adipisicing elit. Blanditiis, sint in placeat
+                            laboriosam officia consectetur modi numquam porro reprehenderit
+                            perferendis voluptatum minima excepturi iste optio alias, natus omnis
+                            eveniet veniam.<div class="catalog-menu__arrow">
+                                <svg>
+                                    <use href="img/icons/icons.svg#cmn--arrow_right"></use>
+                                </svg>
+                            </div>
+                        </a>
+
+                        <!-- Catalog sublist-->
+                        <div class="catalog-menu__sublist">
+                            <a class="catalog-menu__subitem" href="#">Автомобильные</a>
+                            <a class="catalog-menu__subitem" href="#">Для ИБП</a>
+                            <a class="catalog-menu__subitem" href="#">Литиевые</a>
+                            <a class="catalog-menu__subitem" href="#">Тяговые</a>
+                            <a class="catalog-menu__subitem" href="#">Мото</a>
+                            <a class="catalog-menu__subitem" href="#">Грузовые</a>
+                            <a class="catalog-menu__subitem" href="#">Лодочные</a>
+                            <a class="catalog-menu__subitem" href="#">Для солнечных систем Lorem
+                                ipsum dolor sit amet consectetur adipisicing elit. Ipsa, tempore.
+                                Modi voluptas ex temporibus! Repellat cum eum ullam modi excepturi.
+                                Iure officia ducimus ipsam, sequi officiis temporibus culpa error
+                                ipsum.</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <nav class="catalog-menu menu__catalog _spollers _one _esc"></nav>
+        </nav>
 
-            <!-- Menu list-->
-            <nav class="menu__list">
-                <div class="menu__item">
-                    <a class="menu__link menu__link_active" href="#">Коммерческая недвижимость</a>
-                </div>
-                <div class="menu__item">
-                    <a class="menu__link" href="#">О проекте</a>
-                </div>
-                <div class="menu__item">
-                    <a class="menu__link" href="#">Объекты</a>
-                </div>
-                <div class="menu__item">
-                    <a class="menu__link" href="#">Контакты</a>
-                </div>
-            </nav>
+        <!-- Menu list-->
+        <nav class="menu__list">
+            <div class="menu__item">
+                <a class="menu__link menu__link_active" href="#">Коммерческая недвижимость</a>
+            </div>
+            <div class="menu__item">
+                <a class="menu__link" href="#">О проекте</a>
+            </div>
+            <div class="menu__item">
+                <a class="menu__link" href="#">Объекты</a>
+            </div>
+            <div class="menu__item">
+                <a class="menu__link" href="#">Контакты</a>
+            </div>
+        </nav>
 
-            <!-- Contacts-->
-            <div class="header__contacts d_none d_lg_flex">
-                <a class="contact-item contact-item_header mr_28" href="tel:+78633082020"
-                    target="_blank" rel="noopener noreferrer">
-                    <svg class="contact-item__icon">
-                        <use href="img/icons/icons.svg#phone"></use>
-                    </svg>
-                    <span>+7 (863) 308-20-20</span>
-                </a>
-                <a class="contact-item contact-item_header" href="mailto:info@greenakb.com.ua"
-                    target="_blank" rel="noopener noreferrer">
-                    <svg class="contact-item__icon">
-                        <use href="img/icons/icons.svg#dog"></use>
-                    </svg>
-                    <span>info@greenakb.com.ua</span>
-                </a>
+        <!-- Header contacts-->
+        <div class="contacts menu__contacts">
+            <div class="contacts__box">
+                <div class="row mnl_24 mnb_24 pb_10">
+                    <div class="contacts__phones pl_24 pb_24">
+                        <a class="contacts__item" href="#"> 0 800 999 999</a>
+                        <a class="contacts__item mb_8" href="tel:+380667282328" target="_blank" rel="noopener noreferrer">066
+                            72 82 328</a>
+                        <a class="contacts__item mb_8" href="tel:+380953623312" target="_blank" rel="noopener noreferrer">095
+                            36 23 312</a>
+                        <a class="contacts__item" href="tel:+380632999909" target="_blank" rel="noopener noreferrer">063 29 99
+                            909</a>
+                    </div>
+                    <div class="contacts__social social-list pl_24 pb_24">
+                        <a class="contacts-social social-list__item" href="#">
+                            <svg class="contacts-social__icon">
+                                <use href="img/icons/icons.svg#viber"></use>
+                            </svg>
+                            <div class="contacts-social__txt">Viber</div>
+                        </a>
+                        <a class="contacts-social social-list__item" href="#">
+                            <svg class="contacts-social__icon">
+                                <use href="img/icons/icons.svg#telegram"></use>
+                            </svg>
+                            <div class="contacts-social__txt">Viber</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="contacts__adress">г. Киев, ул. 53-я Садовая, д.66</div>
             </div>
         </div>
     </div>
@@ -293,8 +1778,7 @@
                         <div class="order-box__body">
                             <div class="order-box__item">
                                 <label class="radio">
-                                    <input type="radio" checked="" name="delivery"
-                                        aria-label="checkbox" required="">
+                                    <input type="radio" checked="" name="delivery" aria-label="checkbox" required="">
                                     <span class="checkbox__box">
                                         <svg>
                                             <use href="img/icons/icons.svg#cmn--circle"></use>
@@ -306,8 +1790,7 @@
                             </div>
                             <div class="order-box__item">
                                 <label class="radio">
-                                    <input type="radio" name="delivery" aria-label="checkbox"
-                                        required="">
+                                    <input type="radio" name="delivery" aria-label="checkbox" required="">
                                     <span class="checkbox__box">
                                         <svg>
                                             <use href="img/icons/icons.svg#cmn--circle"></use>
@@ -319,8 +1802,7 @@
                             </div>
                             <div class="order-box__item">
                                 <label class="radio">
-                                    <input type="radio" name="delivery" aria-label="checkbox"
-                                        required="">
+                                    <input type="radio" name="delivery" aria-label="checkbox" required="">
                                     <span class="checkbox__box">
                                         <svg>
                                             <use href="img/icons/icons.svg#cmn--circle"></use>
@@ -332,8 +1814,7 @@
                             </div>
                             <div class="order-box__item">
                                 <label class="radio">
-                                    <input type="radio" name="delivery" aria-label="checkbox"
-                                        required="">
+                                    <input type="radio" name="delivery" aria-label="checkbox" required="">
                                     <span class="checkbox__box">
                                         <svg>
                                             <use href="img/icons/icons.svg#cmn--circle"></use>
@@ -352,8 +1833,7 @@
                         <div class="order-box__body">
                             <div class="order-box__item">
                                 <label class="radio">
-                                    <input type="radio" checked="" name="payment"
-                                        aria-label="checkbox" required="">
+                                    <input type="radio" checked="" name="payment" aria-label="checkbox" required="">
                                     <span class="checkbox__box">
                                         <svg>
                                             <use href="img/icons/icons.svg#cmn--circle"></use>
@@ -365,8 +1845,7 @@
                             </div>
                             <div class="order-box__item">
                                 <label class="radio">
-                                    <input type="radio" name="payment" aria-label="checkbox"
-                                        required="">
+                                    <input type="radio" name="payment" aria-label="checkbox" required="">
                                     <span class="checkbox__box">
                                         <svg>
                                             <use href="img/icons/icons.svg#cmn--circle"></use>
@@ -378,8 +1857,7 @@
                             </div>
                             <div class="order-box__item">
                                 <label class="radio">
-                                    <input type="radio" name="payment" aria-label="checkbox"
-                                        required="">
+                                    <input type="radio" name="payment" aria-label="checkbox" required="">
                                     <span class="checkbox__box">
                                         <svg>
                                             <use href="img/icons/icons.svg#cmn--circle"></use>
@@ -390,8 +1868,7 @@
                             </div>
                             <div class="order-box__item">
                                 <label class="radio">
-                                    <input type="radio" name="payment" aria-label="checkbox"
-                                        required="">
+                                    <input type="radio" name="payment" aria-label="checkbox" required="">
                                     <span class="checkbox__box">
                                         <svg>
                                             <use href="img/icons/icons.svg#cmn--circle"></use>
@@ -408,23 +1885,16 @@
                         <div class="order-box__title">Данные для Новойпочты/Деливери</div>
                         <div class="order-box__body">
                             <div class="form__item mb_16">
-                                <input class="form__input cl_12" type="text" placeholder="Город"
-                                    name="city_111" aria-label="Город" required="">
+                                <input class="form__input cl_12" type="text" placeholder="Город" name="city_111" aria-label="Город" required="">
                             </div>
                             <div class="form__item mb_16">
-                                <input class="form__input cl_12" type="text"
-                                    placeholder="Номер отделения" name="branch_111"
-                                    aria-label="Номер отделения" required="">
+                                <input class="form__input cl_12" type="text" placeholder="Номер отделения" name="branch_111" aria-label="Номер отделения" required="">
                             </div>
                             <div class="form__item mb_16">
-                                <input class="form__input cl_12" type="tel"
-                                    placeholder="Номер телефона получателя" name="tel_111"
-                                    aria-label="Город" required="">
+                                <input class="form__input cl_12" type="tel" placeholder="Номер телефона получателя" name="tel_111" aria-label="Город" required="">
                             </div>
                             <div class="form__item">
-                                <input class="form__input cl_12" type="text"
-                                    placeholder="ФИО получателя" name="name_111"
-                                    aria-label="ФИО получателя" required="">
+                                <input class="form__input cl_12" type="text" placeholder="ФИО получателя" name="name_111" aria-label="ФИО получателя" required="">
                             </div>
                         </div>
                     </div>
@@ -434,18 +1904,13 @@
                         <div class="order-box__title">Доставка по Киеву</div>
                         <div class="order-box__body">
                             <div class="form__item mb_16">
-                                <input class="form__input cl_12" type="text" placeholder="Адрес"
-                                    name="adress_111" aria-label="Адрес" required="">
+                                <input class="form__input cl_12" type="text" placeholder="Адрес" name="adress_111" aria-label="Адрес" required="">
                             </div>
                             <div class="form__item mb_16">
-                                <input class="form__input cl_12" type="text"
-                                    placeholder="Номер телефона получателя" name="number_111"
-                                    aria-label="Номер телефона получателя" required="">
+                                <input class="form__input cl_12" type="text" placeholder="Номер телефона получателя" name="number_111" aria-label="Номер телефона получателя" required="">
                             </div>
                             <div class="form__item">
-                                <input class="form__input cl_12" type="text"
-                                    placeholder="ФИО получателя" name="name_112"
-                                    aria-label="ФИО получателя" required="">
+                                <input class="form__input cl_12" type="text" placeholder="ФИО получателя" name="name_112" aria-label="ФИО получателя" required="">
                             </div>
                         </div>
                     </div>
@@ -471,8 +1936,7 @@
                                     <div class="number number_sm">
                                         <div class="number__button number__button_minus"></div>
                                         <div class="number__input">
-                                            <input autocomplete="off" type="text" name="form[]"
-                                                value="1" aria-label="number">
+                                            <input autocomplete="off" type="text" name="form[]" value="1" aria-label="number">
                                         </div>
                                         <div class="number__button number__button_plus"></div>
                                     </div>
@@ -491,8 +1955,7 @@
                                     <div class="number number_sm">
                                         <div class="number__button number__button_minus"></div>
                                         <div class="number__input">
-                                            <input autocomplete="off" type="text" name="form[]"
-                                                value="1" aria-label="number">
+                                            <input autocomplete="off" type="text" name="form[]" value="1" aria-label="number">
                                         </div>
                                         <div class="number__button number__button_plus"></div>
                                     </div>
@@ -505,15 +1968,13 @@
                         <div class="txt txt_sm txt_sec txt_right mb_8">Сумма: <span class="ml_16">
                                 2400 грн</span>
                         </div>
-                        <div class="txt txt_xs txt_sec txt_right mb_24">Ваша скидка: <span
-                                class="ml_16">180 грн</span>
+                        <div class="txt txt_xs txt_sec txt_right mb_24">Ваша скидка: <span class="ml_16">180 грн</span>
                         </div>
                         <div class="txt txt_lg txt_sec txt_right">Итого: <span class="ml_16">2400
                                 грн</span> 2400</div>
                     </div>
                     <div class="jc_end">
-                        <button class="btn btn_prim btn_md ml_auto ripple txt_md form__btn"
-                            type="submit">Оформить заказ</button>
+                        <button class="btn btn_prim btn_md ml_auto ripple txt_md form__btn" type="submit">Оформить заказ</button>
                     </div>
                 </div>
             </form>
@@ -553,11 +2014,7 @@
             <!-- Footer logo-->
             <div class="footer__item">
                 <a class="logo footer__logo" href="#">
-                    <picture>
-                        <source srcset="img/footer/logo_light.svg" type="image/webp">
-                        <img class="logo__img" src="img/footer/logo_light.svg" alt="logo"
-                            width="185" height="74">
-                    </picture>
+                    <img class="logo__img" src="img/footer/logo_light.svg" alt="logo">
                 </a>
             </div>
 
@@ -605,10 +2062,7 @@
                 <form class="form">
                     <div class="row">
                         <div class="form__item cl cl_md_12 mr_32 mr_lg_16 mr_md_0 mb_md_16">
-                            <input class="form__input cl_12" type="tel"
-                                placeholder="Ваш номер телефона" name="phone_112"
-                                aria-label="Ваш номер телефона" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-                                required="">
+                            <input class="form__input cl_12" type="tel" placeholder="Ваш номер телефона" name="phone_112" aria-label="Ваш номер телефона" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required="">
                         </div>
                         <button class="btn btn_prim btn_md cl_6 cl_md_12 ripple" type="submit">
                             Оформить заказ</button>
@@ -629,9 +2083,7 @@
                 </div>
                 <div class="location">
                     <div class="ratio__box">
-                        <iframe class="location__box"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2544.0707480415876!2d30.610029215613242!3d50.38387967946615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4c51ead20a647%3A0xa65ccdff528d947f!2z0JDQstGC0L7QvNC-0LHQuNC70YzQvdGL0LUg0JDQutC60YPQvNGD0LvRj9GC0L7RgNGL!5e0!3m2!1suk!2sua!4v1632189332164!5m2!1suk!2sua"
-                            allowfullscreen="" loading="lazy"></iframe>
+                        <iframe class="location__box" src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=%D0%B3.%20%D0%9A%D0%B8%D0%B5%D0%B2%2C%20%D1%83%D0%BB.%2053-%D1%8F%20%D0%A1%D0%B0%D0%B4%D0%BE%D0%B2%D0%B0%D1%8F%20%D0%B4.%2066+(GreenABS)&amp;ie=UTF8&amp;t=&amp;z=12&amp;iwloc=B&amp;output=embed" loading="lazy"></iframe>
                     </div>
                 </div>
             </div>
@@ -644,24 +2096,11 @@
             <use href="img/icons/icons.svg#cmn--arr_1_up"></use>
         </svg>
     </button>
-    <!--Scripts-->
-    <script src="js/critical.min.js" defer=""></script>
-    <script>
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                const scriptPromise = new Promise((resolve, reject) => {
-                    const script = document.createElement('script');
-                    document.body.appendChild(script);
-                    script.onload = resolve;
-                    script.onerror = reject;
-                    script.async = true;
-                    script.src = 'js/main.min.js';
-                });
-            }, 1000);
-        }, false);
-    </script>
     <!--No JS-->
     <noscript class="noscript">У вас отключен JavaScript. Сайт может отображаться некорректно.
         Рекомендуем включить JavaScript.</noscript>
+    <script src="https://unpkg.com/aos@2.3.3/dist/aos.js" defer=""></script>
+    <!--Scripts-->
+    <script src="js/script.min.js" defer=""></script>
 </body>
 </html>
